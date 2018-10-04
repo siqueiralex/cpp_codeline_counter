@@ -41,5 +41,7 @@ bool initiates_comment(std::string s) {
 }
 
 bool next_line_is_comment(std::string s) {
-    return true;
+    std::string double_slash("//");
+    return (initiates_comment(s) && !ends_comment(s)) || 
+        (s.find(double_slash) != s.npos &&  s.find_last_of('\\') == (s.size()-1));
 }
