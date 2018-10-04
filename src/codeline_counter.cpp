@@ -39,3 +39,7 @@ bool initiates_comment(std::string s) {
     return (s.find("/") != s.npos &&
         (s[s.find("/")+1] == '/' || s[s.find("/")+1] == '*'));
 }
+
+bool next_line_is_comment(std::string s) {
+    return true;
+}
