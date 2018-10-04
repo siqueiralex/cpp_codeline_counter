@@ -30,6 +30,7 @@ bool only_comments(std::string s) {
     return false;
 }
 
-bool ends_comment(std::string s){
-    return true;
+bool ends_comment(std::string s) {
+    return (s.find("/") != s.npos &&
+        (s[s.find("/")+1] == '/' || s[s.find_last_of("/")-1] == '*'));
 }
