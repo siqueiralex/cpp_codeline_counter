@@ -18,6 +18,14 @@ void elim_spaces(std::string *s) {
     }
 }
 
-bool only_comments(std::string){
-    return true;
+bool only_comments(std::string s) {
+    std::string end_comm("*/");
+    if (s.find("/") != s.npos &&
+        s[0] == '/' && (s[1]=='/' || s[1]=='*')) {
+        if ( s.find(end_comm) != s.npos && s.find(end_comm) < (s.size()-2)) {
+            return false;
+        }
+        return true;
+    }
+    return false;
 }
