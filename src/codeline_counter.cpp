@@ -29,3 +29,7 @@ bool only_comments(std::string s) {
     }
     return false;
 }
+
+bool ends_comment(std::string s){
+    return true;
+}
