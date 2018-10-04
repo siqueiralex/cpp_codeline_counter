@@ -92,6 +92,22 @@ TEST(CodeLineCounting, NextLineIsComment) {
     EXPECT_EQ(false, next_line_is_comment(negative_4));
 }
 
+TEST(CodeLineCounting, CodeLines) {
+
+    std::string code_01("//comment\\");
+    std::string code_02("//comment\\\nanothercomment*/\n");
+    std::string code_1("code\n/*comment*/");
+    std::string code_2(" \ncode\ncode\n/*comment");
+    std::string code_3(" \ncode\ncode\n/*comment\n*/code\n");
+     
+   
+    EXPECT_EQ(0, count_code_lines(code_01));
+    EXPECT_EQ(0, count_code_lines(code_02));
+    EXPECT_EQ(1, count_code_lines(code_1));
+    EXPECT_EQ(2, count_code_lines(code_2));
+    EXPECT_EQ(3, count_code_lines(code_3));
+}
+
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();

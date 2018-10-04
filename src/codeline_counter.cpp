@@ -45,3 +45,8 @@ bool next_line_is_comment(std::string s) {
     return (initiates_comment(s) && !ends_comment(s)) || 
         (s.find(double_slash) != s.npos &&  s.find_last_of('\\') == (s.size()-1));
 }
+
+int count_code_lines(std::string s) {
+    int count = 0;
+    return count;
+}
