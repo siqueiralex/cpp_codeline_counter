@@ -17,3 +17,7 @@ void elim_spaces(std::string *s) {
         (*s) = empty;
     }
 }
+
+bool only_comments(std::string){
+    return true;
+}

@@ -34,6 +34,19 @@ TEST(CodeLineCounting, EliminateSpaces) {
     EXPECT_STREQ("test", beginning_spaces.c_str());
 }
 
+TEST(CodeLineCounting, OnlyComments) {
+
+    std::string negative_1("code/*comment*/");
+    std::string negative_2("/*comment*/code");
+    std::string positive_1("// comment only");
+    std::string positive_2("/*comment/comment");
+   
+    EXPECT_EQ(false, only_comments(negative_1));
+    EXPECT_EQ(false, only_comments(negative_2));
+    EXPECT_EQ(true, only_comments(positive_1));
+    EXPECT_EQ(true, only_comments(positive_2));
+}
+
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
