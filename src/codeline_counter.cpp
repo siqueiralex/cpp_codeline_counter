@@ -48,5 +48,30 @@ bool next_line_is_comment(std::string s) {
 
 int count_code_lines(std::string s) {
     int count = 0;
+    bool inside_comment = false;
+    std::istringstream f(s.c_str());
+    std::string line;
+    while (getline(f, line)) {
+        if (!only_spaces(line)) {
+            elim_spaces(&line);
+            if (!inside_comment) {
+                if (initiates_comment(line)) {
+                    if (ends_comment(line)) {
+                        if (next_line_is_comment(line))
+                            count--;
+                    } else {
+                        inside_comment = true;
+                    }
+                    if (!only_comments(line)) count++;
+                } else {
+                    count++;
+                }
+            } else if (ends_comment(line)) {
+                inside_comment = false;
+                if (!only_comments(line)) count++;
+            }
+        }
+    }
+    if (count < 0) return 0;
     return count;
 }
