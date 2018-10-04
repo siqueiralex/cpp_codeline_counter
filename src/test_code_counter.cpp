@@ -60,6 +60,19 @@ TEST(CodeLineCounting, EndsComment) {
     EXPECT_EQ(false, ends_comment(negative_2));
 }
 
+TEST(CodeLineCounting, InitiatesComment) {
+
+    std::string positive_1("code/*comment*/");
+    std::string positive_2("//comment");
+    std::string negative_1("comment only*/");
+    std::string negative_2("only code");
+   
+    EXPECT_EQ(true, initiates_comment(positive_1));
+    EXPECT_EQ(true, initiates_comment(positive_2));
+    EXPECT_EQ(false, initiates_comment(negative_1));
+    EXPECT_EQ(false, initiates_comment(negative_2));
+}
+
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
